@@ -35,13 +35,10 @@ if __name__ == "__main__":
     main(3, '1')
 
 if __name__ == "__main__":
-    main('3', '1')
-
-if __name__ == "__main__":
     main('Cloud', 'Sun')
 
 if __name__ == "__main__":
     main('3', 'learn')
 
 if __name__ == "__main__":
-    main('3', '3')
+    main('hi', 'hi')
