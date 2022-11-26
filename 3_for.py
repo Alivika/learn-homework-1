@@ -30,18 +30,26 @@ stock =  [
       'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
   ]
 
-def sum_sold():
-  result = 0
-  i = 0
-  while i < 3:
-    for amount in stock[i]['items_sold']:
-      result += amount
-      name = stock[i]['product']
-    print(f'Суммарное количество продаж {name}: {result}')
-    i += 1
-    result = 0
 
-sum_sold()
+
+# def item_sum(items_sold):
+#   result = 0
+#   for amount in items_sold:
+#       result += amount
+#   return result
+
+
+def sum_sold():
+ 
+  for item in stock:
+
+    name = item['product']
+    total = sum(item['items_sold'])
+    print(f'Суммарное количество продаж {name}: {total}')
+
+
+
+
 
 def average_sold():
   result = 0
@@ -80,6 +88,9 @@ def all_avg():
     
 
 def main():
+  sum_sold()
+ 
+
   all_sum_sold = all_sum()
   print(all_sum_sold)
   
