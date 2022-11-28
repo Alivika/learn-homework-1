@@ -12,11 +12,9 @@
 
 def hello_user():
     try:
-      while True:
+      answer = ''
+      while answer != 'Хорошо':
         answer = input("Как дела? ")
-        if answer != 'Хорошо':
-          hello_user()
-        break 
     except KeyboardInterrupt:
       print("Пока!")
 
