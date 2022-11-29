@@ -12,41 +12,60 @@
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
+import ephem
 import logging
+import datetime
+import settings
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
-                    filename='bot.log')
+                    filename='bot.log'
+                    )
 
-
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
-    }
-}
 
 
 def greet_user(update, context):
-    text = 'Вызван /start'
+    print('Вызван /start')
+    update.message.reply_text("Привет, пользователь!")
+
+
+def get_constellation(update, bot):
+    planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto']
+    text = 'Вызван /planet'
+    print(text)
+    msg = update.message
+
+    planet_name = str(msg.text.split(' ')[1]).capitalize()
+    print(planet_name)
+
+    if planet_name in planets:
+        planet = getattr(ephem, planet_name)
+        time_planet = planet(datetime.datetime.now())
+        planet_constellation = ephem.constellation(time_planet)
+        print(planet_constellation)
+
+        msg.reply_text(f'{planet_name}: {planet_constellation}')
+    else:
+        msg.reply_text(
+            'Ошибка ввода имени планеты: "' + planet_name + '". После /planet введите имя планеты на английском языке.')
+        print('Ошибка ввода имени планеты')
+    msg.reply_text(text)
+
+
+def talk_to_me(update, context):
+    text = update.message.text
     print(text)
     update.message.reply_text(text)
 
 
-def talk_to_me(update, context):
-    user_text = update.message.text
-    print(user_text)
-    update.message.reply_text(text)
-
-
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(settings.API_KEY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", get_constellation))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
