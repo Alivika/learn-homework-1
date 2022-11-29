@@ -16,20 +16,28 @@
 
 user_age = int(input('Insert your age: '))
 
-def main(user_age):
+
+def age_res(user_age):
 
     if user_age < 3:
-      print('Relax')
+      return 'Relax'
       
     if user_age >= 3 and user_age < 7:
-      print('You should be in kindergarten!')
-    elif user_age >= 7 and user_age <= 17:
-      print('You should be in school!')
-    elif user_age > 17 and user_age <= 25:
-      print('You should be in university!')
-    elif user_age > 25:
-      print('Back to work!')
+      return 'You should be in kindergarten!'
+
+    if user_age >= 7 and user_age <= 17:
+      return 'You should be in school!'
+
+    if user_age > 17 and user_age <= 25:
+      return 'You should be in university!'
+
+    if user_age > 25:
+      return 'Back to work!'
+
+
+def main():
+  print(age_res(user_age))
 
 
 if __name__ == "__main__":
-    main(user_age)
+    main()

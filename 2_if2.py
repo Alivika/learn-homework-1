@@ -15,30 +15,28 @@
 
 """
 
-def main(one, two):
-  if not isinstance(one, str) or not isinstance(two, str):
-      print(0)
 
+def check_str(one, two):
   if isinstance(one, str) and isinstance(one, str):
       if one == two:
-        print(1)
-      elif one != two and len(one) > len(two):
-        print(2)
-      elif one != two and two == 'learn':
-        print(3)
+        return 1
+
+      if one != two and len(one) > len(two):
+        return 2
+
+      if one != two and two == 'learn':
+        return 3
+        
+  return 0
+
+
+def main():
+    print(check_str(3, 1))
+    print(check_str(3, '1'))
+    print(check_str('Cloud', 'Sun'))
+    print(check_str('3', 'learn'))
+    print(check_str('hi', 'hi'))
 
 
 if __name__ == "__main__":
-    main(3, 1)
-
-if __name__ == "__main__":
-    main(3, '1')
-
-if __name__ == "__main__":
-    main('Cloud', 'Sun')
-
-if __name__ == "__main__":
-    main('3', 'learn')
-
-if __name__ == "__main__":
-    main('hi', 'hi')
+    main()
