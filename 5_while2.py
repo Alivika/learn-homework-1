@@ -12,7 +12,7 @@
 
     Пользователь: Что делаешь?
     Программа: Программирую
-    
+
 """
 
 answers = {
@@ -23,12 +23,15 @@ answers = {
   "Хочешь тортик?": "Неси!"
 }
 
-def ask_user(answers_dict):
+def ask_user():
     user_question = input("Задайте вопрос: ")
     while user_question in answers:
-      print(answers[user_question])
-      break
-    
-    
+      return answers[user_question]
+    return 'Не понял ваш вопрос'
+
+def main():
+    print(ask_user())
+
+
 if __name__ == "__main__":
-    ask_user(answers)
+    main()
