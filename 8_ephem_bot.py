@@ -36,7 +36,7 @@ def talk_to_me(update, context):
 
 
 def get_constellation(update, bot):
-    planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto']
+    planets = {'Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'}
     logger.debug('Вызван /planet')
     msg = update.message
 

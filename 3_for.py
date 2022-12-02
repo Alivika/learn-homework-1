@@ -33,22 +33,22 @@ stock =  [
 
 def main():
     total_sum = 0
-    total_avg = 0
     sold = 0
 
     for item in stock:
         name = item['product']
+        amount = len(item["items_sold"])
+
         total = sum(item['items_sold'])
         print(f'Суммарное количество продаж {name}: {total}')
 
-        avg  = total / len(item['items_sold'])
+        avg  = total / amount
         print(f'Среднее количество продаж {name}: {avg}\n')
 
-    for item in stock:
-      total_sum += sum(item['items_sold'])
-      sold_all = len(item["items_sold"])
-      sold += sold_all
-      total_avg  = total_sum / sold
+        total_sum += total
+        sold += amount
+
+    total_avg  = total_sum / sold
 
     print(f'Суммарное количество продаж всех товаров: {total_sum}')
     print(f'Среднее количество продаж всех товаров: {total_avg}')
